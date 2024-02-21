@@ -1,24 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import store from './store';
+import ListScreen from './components/ListScreen';
+import AddScreen from './components/AddScreen';
+import EditScreen from './components/EditScreen';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <Router>
+        <div>
+          <Route path="/" exact component={ListScreen} />
+          <Route path="/add" component={AddScreen} />
+          <Route path="/edit/:id" component={EditScreen} />
+        </div>
+      </Router>
+    </Provider>
   );
 }
 
